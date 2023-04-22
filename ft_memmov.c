@@ -1,53 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memmov.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 14:01:46 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 14:01:46 by imontero         ###   ########.fr       */
+/*   Created: 2023/04/19 18:11:29 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/19 19:33:07 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	duplica un string
-*/
-
-char	*ft_strdup(const char *str)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*new;
-	int		i;
-	int		len;
+	size_t	i;
 
-	i = 0;
-	len = 0;
-	while (str[len])
-			len++;
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
+	if (!dest && !src)
 		return (NULL);
-	while (str[i])
+	if (dest == src)
+		return (dest);
+	i = 0;
+	if (dest > src)
 	{
-		new[i] = str[i];
-		i++;
+		while (i < n)
+		{
+			((char *)dest)[n - 1] = ((char *)src)[n - 1];
+			n--;
+		}
 	}
-	new[i] = '\0';
-	return (new);
+	else
+	{
+		while (i < n)
+		{
+			((char *)dest)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
 }
-
-/*
-int		main(void)
-{
-	const char	*str;
-	char	*str2;
-	
-	str = "HELL-o";
-	str2 = ft_strdup(str);
-	printf("%s\n", str2);
-	free(str2);
-	return (0);
-}
-*/

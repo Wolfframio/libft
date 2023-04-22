@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 08:18:13 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/21 13:08:41 by imontero         ###   ########.fr       */
+/*   Created: 2023/04/21 10:19:22 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/21 10:19:22 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-int	ft_atoi(const char *str)
+/*
+Envía el número ’n’ al file descriptor dado.
+*/
+
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		i;
-	int		sign;
-	int		nb;
+	int	b;
 
-	sign = 1;
-	nb = 0;
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+	if (n == -2147483648)
 	{
-		i++;
+		write(fd, "-", 1);
+		write(fd, "2", 1);
+		ft_putnbr_fd(147483648, fd);
 	}
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (ft_isdigit(str[i]))
+	else if (n < 0)
 	{
-		nb = (nb * 10) + (str[i] - '0');
-		i++;
+		write(fd, "-", 1);
+		ft_putnbr_fd(-n, fd);
+		n *= -1;
 	}
-	nb *= sign;
-	return (nb);
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+	{
+		b = n + 48;
+		write(fd, &b, 1);
+	}	
 }

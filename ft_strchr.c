@@ -1,53 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 14:01:46 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 14:01:46 by imontero         ###   ########.fr       */
+/*   Created: 2023/04/20 10:56:11 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/20 11:04:24 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-	duplica un string
+	Busca cierto carácter dentro de una cadena de texto.
 */
 
-char	*ft_strdup(const char *str)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	char	*new;
 	int		i;
-	int		len;
+	char	*str;
 
+	str = (char *)s;
 	i = 0;
-	len = 0;
-	while (str[len])
-			len++;
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (NULL);
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		new[i] = str[i];
-		i++;
+		if (str[i] == (unsigned char)c)
+			return (&str[i]);
+			i++;
 	}
-	new[i] = '\0';
-	return (new);
+	if ((unsigned char)c == '\0')
+		return (&str[i]);
+	return (NULL);
 }
-
-/*
-int		main(void)
-{
-	const char	*str;
-	char	*str2;
-	
-	str = "HELL-o";
-	str2 = ft_strdup(str);
-	printf("%s\n", str2);
-	free(str2);
-	return (0);
-}
-*/

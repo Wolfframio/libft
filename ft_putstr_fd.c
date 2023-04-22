@@ -1,53 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 14:01:46 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 14:01:46 by imontero         ###   ########.fr       */
+/*   Created: 2023/04/21 10:19:13 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/21 10:19:13 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 /*
-	duplica un string
+Envía la string ’s’ al file descriptor
+especificado.
 */
 
-char	*ft_strdup(const char *str)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*new;
-	int		i;
-	int		len;
+	int	i;
 
 	i = 0;
-	len = 0;
-	while (str[len])
-			len++;
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (NULL);
-	while (str[i])
+	while (s[i])
 	{
-		new[i] = str[i];
+		write(fd, &s[i], 1);
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
 }
-
-/*
-int		main(void)
-{
-	const char	*str;
-	char	*str2;
-	
-	str = "HELL-o";
-	str2 = ft_strdup(str);
-	printf("%s\n", str2);
-	free(str2);
-	return (0);
-}
-*/

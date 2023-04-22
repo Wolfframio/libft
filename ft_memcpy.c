@@ -1,53 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 14:01:46 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 14:01:46 by imontero         ###   ########.fr       */
+/*   Created: 2023/04/19 12:54:05 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/21 11:16:22 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-	duplica un string
+	sobreescribe n caracteres de 
+	la cadena src a la cadena dst. 
 */
 
-char	*ft_strdup(const char *str)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*new;
-	int		i;
-	int		len;
+	size_t	i;
 
 	i = 0;
-	len = 0;
-	while (str[len])
-			len++;
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
+	if (!dest && !src)
 		return (NULL);
-	while (str[i])
+	while (i < n)
 	{
-		new[i] = str[i];
+		((char *)dest)[i] = ((char *)src)[i];
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	return (dest);
 }
-
-/*
-int		main(void)
-{
-	const char	*str;
-	char	*str2;
-	
-	str = "HELL-o";
-	str2 = ft_strdup(str);
-	printf("%s\n", str2);
-	free(str2);
-	return (0);
-}
-*/

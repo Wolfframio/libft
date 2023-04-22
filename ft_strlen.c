@@ -6,18 +6,24 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:08:33 by imontero          #+#    #+#             */
-/*   Updated: 2023/03/06 11:33:21 by imontero         ###   ########.fr       */
+/*   Updated: 2023/04/20 10:20:00 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include "libft.h"
+
+/*
+	returns the length of a string
+*/
+
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		i++;
+		i ++;
 	}
 	return (i);
 }
