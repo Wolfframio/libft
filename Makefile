@@ -35,6 +35,7 @@ SRCS		= ft_memset.c \
 			ft_toupper.c \
 			ft_tolower.c \
 			ft_calloc.c \
+			ft_split.c \
 			ft_strdup.c \
 			ft_substr.c \
 			ft_strjoin.c \
@@ -64,3 +65,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re #indica que los objetivos que contiene no son archivos y no tiene que buscarlos
