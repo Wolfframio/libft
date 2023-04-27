@@ -1,56 +1,77 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+static	int	ft_countwordds(char *str, char sep)
+{
+	int	i;
+	int	strcount;
 
-char **ft_split(char const *s, char c) {
-    int count = 0;
-    int i = 0;
-    int j = 0;
-    char **result = NULL;
-
-    while (s[i] != '\0') {
-        if (s[i] == c) {
-            count++;
-        }
-        i++;
-    }
-    count++;
-
-    result = (char **)malloc(sizeof(char *) * count);
-    if (!result) {
-        return NULL;
-    }
-
-    i = 0;
-    while (i < count - 1) {
-        int k = 0;
-        result[i] = (char *)malloc(sizeof(char) * (strlen(s) + 1));
-        if (!result[i]) {
-            return NULL;
-        }
-        while (s[j] != c && s[j] != '\0') {
-            result[i][k] = s[j];
-            j++;
-            k++;
-        }
-        result[i][k] = '\0';
-        j++;
-        i++;
-    }
-    //result[i] = NULL;
-
-    return result;
+	i = 0;
+	strcount = 0;
+	while (str[i])
+	{
+		if (str[i] == sep)
+			i++;
+		else
+		{
+			strcount++;
+			while (str[i] != sep && str[i])
+				i++;
+		}
+	}
+	return (strcount);
 }
 
-int main() {
-    char str[] = " ";
-    char **tokens = ft_split(str, ',');
-    int i = 0;
-    while (tokens[i] != NULL) {
-        printf("%s\n", tokens[i]);
-        free(tokens[i]);
-        i++;
+static void ft_copywords(char const *s, char c, char **result, int count)
+{
+    int     i;
+    int     j;
+    int     k;
+
+    i = 0;
+    j = 0;
+    while (j < count)
+    {
+        k = 0;
+        while (s[i] == c)
+            i++;
+        while (s[i + k] != c && s[i + k])
+            k++;
+        result[j] = ft_substr(s, i, k);
+        if (!result[j])
+            return ;
+        i += k;
+        j++;
     }
-    free(tokens);
-    return 0;
+}
+
+char **ft_split(char const *s, char c)
+{
+    int     count;
+    char    **result;
+
+    count = ft_countwords(s, c); // Contar el número de subcadenas en s
+    result = (char **)malloc((count + 1) * sizeof(char *)); // Asignar memoria para el array de subcadenas
+    if (!result)
+        return (NULL);
+    result[count] = NULL; // Establecer el último elemento del array como NULL
+    ft_copywords(s, c, result, count); // Copiar las subcadenas en el array result
+    return (result); // Devolver el array de subcadenas
+}
+
+int  main(void)
+{
+   char    *s = "      gfdgf      ";
+   char    c = ' ';
+   size_t  count;
+   char    **tab = ft_split(s, c);
+   size_t  i;
+
+
+   i = 0;
+   count = ft_size_substring(s, c);
+   printf("s[0]: %c\n", s[0]);
+   printf("COUNT en main: %zu\n", count);
+   while (i < count)
+   {
+       printf("%s\n", tab[i]);
+       i++;
+   }
 }

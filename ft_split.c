@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/26 10:36:54 by imontero          #+#    #+#             */
+/*   Updated: 2023/04/27 09:31:45 by imontero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -17,18 +28,23 @@
 	"Hola que tal"
 */
 
-static	int	ft_strcount(char *s, char sep)
+static	int	ft_strcount(char *str, char sep)
 {
 	int	i;
 	int	strcount;
 
 	i = 0;
 	strcount = 0;
-	while (s[i])
+	while (str[i])
 	{
-		if (s[i] == sep)
+		if (str[i] == sep)
+			i++;
+		else
+		{
 			strcount++;
-		i++;
+			while (str[i] =! sep && str[i])
+				i++;
+		}
 	}
 	return (strcount);
 
