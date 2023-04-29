@@ -12,37 +12,41 @@
 
 #include "libft.h"
 
-/*
-	Elimina todos los caracteres de la string set desde el principio
-	y desde el final de s1, 
-	hasta encontrar un carácter no perteneciente a set. 
-	La string resultante se devuelve con una reserva de malloc(3).
-	Valor a configurar
+static	size_t	ft_check_char(char c, char const *set)
+{
+	size_t	i;
 
-	Parametros
-	s1 		Es la cadena que se va a recortar
-	set		Son los caracteres que, si aparecen en s1, 
-			van a cortarla por delante y por detrás
-
-	Retorno
-	Si falla reserva memoria	Devuelve NULL
-	Si s1 y s2 no están vacíos	Devuelve la cadena juntando s1 y s2
-*/
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	len;
-	char	*result;
+	char		*str;
+	size_t		i;
+	size_t		start;
+	size_t		end;
 
-	while (*s1 && ft_strchr(set, *s1) != 0)
-		s1++;
-	len = ft_strlen(s1);
-	while (len && s1[len - 1] && ft_strchr(set, s1[len - 1]) != 0)
-		len--;
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (!result)
+	if (!s1 || !set)
 		return (NULL);
-	ft_memcpy(result, s1, len);
-	result[len] = '\0';
-	return (result);
+	start = 0;
+	while (s1[start] && ft_check_char(s1[start], set))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_check_char(s1[end - 1], set))
+		end--;
+	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = 0;
+	return (str);
 }

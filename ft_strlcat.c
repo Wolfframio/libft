@@ -12,13 +12,6 @@
 
 #include "libft.h"
 
-/*
-	agrega una cadena al final de la otra. 
-	Ofrece un argumento adicional, dstsize.
-	Este argumento establece la longitud de la 
-	cadena de destino, de hecho igual a su tamaño de búfer.
-*/
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
