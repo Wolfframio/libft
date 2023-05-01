@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static	size_t	ft_check_char(char c, char const *set)
+static	size_t	ft_ischar(char c, char const *set)
 {
 	size_t	i;
 
@@ -36,10 +36,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	start = 0;
-	while (s1[start] && ft_check_char(s1[start], set))
+	while (s1[start] && ft_ischar(s1[start], set))
 		start++;
 	end = ft_strlen(s1);
-	while (end > start && ft_check_char(s1[end - 1], set))
+	while (end > start && ft_ischar(s1[end - 1], set))
 		end--;
 	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
 	if (!str)
