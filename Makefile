@@ -50,20 +50,36 @@ SRCS		= ft_memset.c \
 				
 OBJS		= $(SRCS:%.c=%.o)
 
+SRC_BONUS = ft_lstnew.c	\
+			ft_lstadd_front.c	\
+			ft_lstsize.c	\
+			ft_lstlast.c	\
+			ft_lstadd_back.c	\
+			ft_lstdelone.c	\
+			ft_lstclear.c	\
+			ft_lstiter.c	\
+			ft_lstmap.c
+
+OBJS_BONUS = $(SRC_BONUS:%.c=%.o)
+
 FLAGS		= -Wall -Wextra -Werror
 
 $(NAME):
 	gcc $(FLAGS) -c $(SRCS)
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(OBJS) 
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus:
+	gcc $(FLAGS) -c $(SRC_BONUS)
+	ar rc $(NAME) $(OBJS_BONUS)
+
+.PHONY: all clean fclean re 

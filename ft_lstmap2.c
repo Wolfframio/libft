@@ -9,33 +9,30 @@
 /*   Updated: 2023/05/02 12:57:22 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*lstnew;
+	t_list *result;
+	t_list *curr;
 
-	lstnew = NULL;
 	if (!lst || !f || !del)
 		return (NULL);
+	result = ft_lstnew(f(lst->content));
+	if (!result)
+		return (0);
+	curr = result;
+	lst = lst->next;
 	while (lst)
 	{
-		new = ft_lstnew(f(lst->content));
-		if (!new)
+		if (!(curr->next = ft_lstnew(f(lst->content))))
 		{
-			ft_lstclear(&lstnew, del);
-			ft_lstclear(&lst, del);
-			return (NULL);
+			ft_lstclear(&result, del);
+			return (0);
 		}
-		ft_lstadd_back(&lstnew, new);
+		curr = curr->next;
 		lst = lst->next;
 	}
-	return (lstnew);
+	return (result);
 }
-
-
-
-
-
-
