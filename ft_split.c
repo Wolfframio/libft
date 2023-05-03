@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:36:54 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/27 09:31:45 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:32:03 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static	char	**ft_splitstrings(char **tab, const char *s, char c)
 			i = j;
 		}
 	}
-	tab[k] = '\0';
+	tab[k] = 0;
 	return (tab);
 }
 
