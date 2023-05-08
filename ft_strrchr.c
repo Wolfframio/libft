@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:04:48 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 11:12:54 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:54:44 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 /*
 	Busca cierta letra dentro de una cadena de texto 
-	empezando desde detrás de la cadena.
+	empezando desde detrás de la cadena y devuelve un puntero al caracter
+	encontrado.
 */
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*str;
-	int		i;
+	int	i;
 
-	i = 0;
-	str = (char *)s;
-	while (str[i] != '\0')
-		i++;
+	i = ft_strlen(s) - 1;
+	if ((char)c == '\0')
+		return (&((char *)s)[i + 1]);
 	while (i >= 0)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
+		if (s[i] == (char)c)
+			return (&((char *)s)[i]);
 		i--;
 	}
 	return (NULL);

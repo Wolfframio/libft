@@ -6,45 +6,39 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:40:12 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/21 09:52:46 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/08 12:49:16 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+	Concatena size caracteres de src detrás de dst.
+	Si size (tamaño maximo) es menor que el tamaño de dst no concatena nada 
+	y devuelve el tamaño de src + size
+	
+	Si no es asi, 
+		copia src al final de dst (tamaño de dst, dstlen).
+		Va copiando mientras i sea menor que tamaño total
+		resultante (size) - dstlen, y -i para colocar el \0 antes de terminar.  
+*/
+
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	dest_len;
-	size_t	total_len;
+	size_t	dstlen;
+	size_t	srclen;
 
-	if ((!dst || !src) && size == 0)
-		return (0);
-	dest_len = ft_strlen(dst);
-	if (dest_len < size)
-		total_len = dest_len + ft_strlen(src);
-	else
-		return (size + ft_strlen(src));
+	srclen = ft_strlen(src);
+	dstlen = ft_strlen(dst);
 	i = 0;
-	while (src[i] && (dest_len + i + 1) < size)
+	if (size <= dstlen)
+		return (srclen + size);
+	while (i < (size - dstlen - 1) && src[i])
 	{
-		dst[dest_len + i] = src[i];
+		dst[dstlen + i] = src[i];
 		i++;
 	}
-	dst[i + dest_len] = '\0';
-	return (total_len);
+	dst[dstlen + i] = '\0';
+	return (dstlen + srclen);
 }
-
-/*
-int main(void)
-{
-	char			dest[50] = "sef";
-	char			src[50] = "sed";
-	unsigned int	size;
-
-	size = 6;
-	printf("%lu\n", strlcat(dest, src, size));
-    printf("%d\n", ft_strlcat(dest, src, size));
-	printf("dest: %s\nsrc: %s\n", dest, src);
-}
-*/

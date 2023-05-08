@@ -6,16 +6,17 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:29 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/21 11:21:12 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:29:08 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-	copia n caracteres de src a dest,
+	Copia n caracteres de src a dest,
 	pero para bloques de memoria superpuestos(overlap),
 	memmove() es un enfoque más seguro que memcpy().
+	Si dest está detrás de src (if dest > src).
 */
 
 void	*ft_memmove(void *dest, const void *src, size_t n)

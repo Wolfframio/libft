@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:56:11 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/23 19:41:28 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/08 17:54:09 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-	Busca cierto carácter dentro de una cadena de texto.
+	Busca cierto carácter dentro de una cadena de texto desde delante
+	y devuelve un puntero al caracter encontrado
 */
 
 char	*ft_strchr(const char *s, int c)

@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:52:34 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 13:33:03 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:01:09 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	{
 		if (((unsigned char *)s)[i] == (unsigned char)c)
 			return (&((unsigned char *)s)[i]);
-		i++;
+	i++;
 	}
 	return (NULL);
 }

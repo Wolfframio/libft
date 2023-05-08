@@ -23,8 +23,6 @@ void	*ft_calloc(size_t n, size_t size)
 {
 	void	*ptr;
 
-	if (n != 0 && (n * size) / n != size)
-		return (NULL);
 	ptr = malloc(n * size);
 	if (!ptr)
 		return (NULL);
