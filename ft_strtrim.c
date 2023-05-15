@@ -12,41 +12,52 @@
 
 #include "libft.h"
 
-static	size_t	ft_ischar(char c, char const *set)
+static int	ft_findstart(char *s1, char *set)
 {
-	size_t	i;
+	int	i;
+	int	start;
 
 	i = 0;
+	start = 0;
 	while (set[i])
 	{
-		if (set[i] == c)
-			return (1);
+		while (set[i] == s1[start])
+		{
+			start++;
+			i = 0;
+		}
 		i++;
 	}
-	return (0);
+	return (start);
+}
+
+static int	ft_findend(char *s1, char *set)
+{
+	int	i;
+	int	end;
+
+	i = ft_strlen(set) - 1;
+	end = ft_strlen(s1) - 1;
+	while (set[i])
+	{
+		while (set[i] == s1[end])
+		{
+			end--;
+			i = ft_strlen(set) - 1;
+		}
+		i--;
+	}
+	return (end);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char		*str;
-	size_t		i;
-	size_t		start;
-	size_t		end;
+	int		start;
+	int		end;
+	char	*new;
 
-	if (!s1 || !set)
-		return (NULL);
-	start = 0;
-	while (s1[start] && ft_ischar(s1[start], set))
-		start++;
-	end = ft_strlen(s1);
-	while (end > start && ft_ischar(s1[end - 1], set))
-		end--;
-	str = (char *)malloc(sizeof(*s1) * (end - start + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (start < end)
-		str[i++] = s1[start++];
-	str[i] = 0;
-	return (str);
+	start = ft_findstart((char *)s1, (char *)set);
+	end = ft_findend((char *)s1, (char *)set);
+	new = ft_substr((char *)s1, start, (end + 1) - start);
+	return (new);
 }

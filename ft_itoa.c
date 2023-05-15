@@ -12,75 +12,48 @@
 
 #include "libft.h"
 
-/*
-	Reserva memoria (con malloc(3)) y devuelve la cadena de caracteres
-	que representa el número pasado como argumento. Se debe manejar
-	la conversión de números negativos.
-*/
-
-static	int	ft_nlen(int n)
+static size_t	ft_numlen(int n)
 {
-	int	nlen;
+	int	len;
 
-	nlen = 1;
+	len = 0;
 	if (n < 0)
-		nlen++;
+	{
+		n *= -1;
+		len++;
+	}
 	while (n / 10 != 0)
 	{
-		n /= 10;
-		nlen++;
+		len++;
+		n = n / 10;
 	}
-	return (nlen);
-}
-
-static	char	*ft_newstr(char *str, long num, int nlen)
-{
-	int	i;
-
-	i = 1;
-	while (num / 10 != 0)
-	{
-		str[nlen - i] = (num % 10) + '0';
-		num /= 10;
-		i++;
-	}
-	str[nlen - i] = (num % 10) + '0';
-	return (str);
+	len++;
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
+	int		len;
 	char	*str;
-	int		nlen;
-	int		i;
 	long	num;
 
-	i = 0;
-	nlen = ft_nlen(n);
-	str = malloc((nlen + 1) * sizeof(char));
+	num = n;
+	len = ft_numlen(num);
+	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
-	num = n;
 	if (num < 0)
 	{
-		str[i] = '-';
-		num = num * -1;
-		i++;
+		num *= -1;
+		str[0] = '-';
 	}
-	str[nlen] = '\0';
-	ft_newstr(str, num, nlen);
+	str[len] = '\0';
+	while (num / 10 != 0)
+	{
+		str[len - 1] = (num % 10) + '0';
+		len--;
+		num = num / 10;
+	}
+	str[len - 1] = (num % 10) + '0';
 	return (str);
 }
-
-/*
-int	main(void)
-{
-	int	num = -3450;
-	char	*output;
-
-	output = ft_itoa(num);
-	printf("%s\n", output);
-	free(output);
-	return (0);
-}
-*/
