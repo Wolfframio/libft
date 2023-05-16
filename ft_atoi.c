@@ -6,35 +6,41 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 08:18:13 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/21 13:08:41 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:15:02 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+	La función atoi devuelve el valor entero correspondiente a la cadena
+	de caracteres str.
+*/
+
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		sign;
-	int		nb;
+	int	i;
+	int	sign;
+	int	num;
 
-	sign = 1;
-	nb = 0;
 	i = 0;
+	num = 0;
+	sign = 1;
 	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
 		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
-	{
+		i++;
+	if (str[i] == '-')
+	{	
+		sign = -1;
 		i++;
 	}
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '-' || str[i] == '+')
+	else if (str[i] == '+')
 		i++;
 	while (ft_isdigit(str[i]))
 	{
-		nb = (nb * 10) + (str[i] - '0');
+		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	nb *= sign;
-	return (nb);
+	num *= sign;
+	return (num);
 }

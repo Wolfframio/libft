@@ -6,11 +6,17 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 12:33:52 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/25 13:12:58 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/15 08:15:51 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+	Reserva memoria (con malloc(3)) y devuelve la cadena de caracteres
+	que representa el número pasado como argumento. Se debe manejar
+	la conversión de números negativos.
+*/
 
 static size_t	ft_numlen(int n)
 {

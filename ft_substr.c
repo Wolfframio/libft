@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:22:50 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 15:57:45 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:04:02 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		sub[0] = '\0';
 		return (sub);
 	}
-	if (len > ft_strlen(s) - start)
+	if (len > (ft_strlen(s) - start))
 		len = ft_strlen(s) - start;
-	sub = (char *)malloc(1 + len * sizeof(char));
+	sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
 		return (NULL);
-	sub[len] = '\0';
-	while (s[start] && len > 0)
-	{
-		len--;
-		sub[len] = s[start + len];
-	}
+	ft_strlcpy(sub, s + start, len + 1);
 	return (sub);
 }

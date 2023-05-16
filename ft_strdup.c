@@ -13,7 +13,7 @@
 #include "libft.h"
 
 /*
-	duplica un string
+	duplica un string con malloc
 */
 
 char	*ft_strdup(const char *str)

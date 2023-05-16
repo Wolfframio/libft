@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:25:07 by imontero          #+#    #+#             */
-/*   Updated: 2023/05/08 10:55:23 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:35:32 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlcpy(char	*dest, const char *src, size_t dstsize)
 	size_t	i;
 
 	i = 0;
-	if (dstsize == 1)
+	if (dstsize == 0)
 		return (ft_strlen(src));
 	while (src[i] && i < (dstsize - 1))
 	{

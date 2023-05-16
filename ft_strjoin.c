@@ -6,7 +6,7 @@
 /*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 16:02:17 by imontero          #+#    #+#             */
-/*   Updated: 2023/04/20 16:08:17 by imontero         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:50:26 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,18 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*new;
-	unsigned int	i;
-	unsigned int	j;
+	size_t	len1;
+	size_t	len2;
+	char	*new;
 
-	i = 0;
-	j = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	new = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!new)
 		return (NULL);
-	while (s1[i])
-	{
-		new[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		new[i] = s2[j];
-		i++;
-		j++;
-	}
-	new[i] = '\0';
+	ft_strlcpy(new, s1, len1 + 1);
+	ft_strlcat(new, s2, (len1 + len2 + 1));
 	return (new);
 }
